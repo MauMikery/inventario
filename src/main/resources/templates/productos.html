@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link rel="stylesheet" href="/output.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <header th:include="fragments/header :: header"></header>
+    <h1 class="text-center text-2xl font-extrabold sm:text-3xl">Productos</h1>
+
+    <!-- Definimos un condicional para saber si hay usuarios o no -->
+    <div class="overflow-x-auto" th:if="${products != null && !products.isEmpty()}">
+        <div class="whitespace-nowrap px-4 py-2">
+            <a
+                    th:href="@{productos/agregar}"
+                    class="inline-block rounded bg-green-600 px-8 py-2 text-xs font-medium text-white hover:bg-green-700"
+            >
+                Agregar
+            </a>
+        </div>
+        <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+
+            <thead class="ltr:text-left rtl:text-right">
+            <tr>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nombre</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Cantidad</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Precio</th>
+                <th class="px-4 py-2"></th>
+            </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                <td th:text="${product.quantity}" class="whitespace-nowrap px-4 py-2 text-gray-700"></td>
+                <td th:text="${product.price}" class="whitespace-nowrap px-4 py-2 text-gray-700"></td>
+                <td class="whitespace-nowrap px-4 py-2">
+                    <a
+                            th:href="@{productos/cambiar/} + ${product.id}"
+                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                    >
+                        Actualizar
+                    </a>
+                    <a
+                            th:href="@{productos/eliminar/} + ${product.id}"
+                            class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+                    >
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Si no hay usuarios lo informaremos   -->
+    <div class="overflow-x-auto text-center p-8" th:if="${products == null || products.isEmpty()}">
+        No hay ningún producto aún. Crea uno.
+
+        <div class="whitespace-nowrap px-4 py-2">
+            <a
+                    th:href="@{productos/agregar}"
+                    class="inline-block rounded bg-green-600 px-8 py-2 text-xs font-medium text-white hover:bg-green-700"
+            >
+                Agregar
+            </a>
+        </div>
+    </div>
+    <footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

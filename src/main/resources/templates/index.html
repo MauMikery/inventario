@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/output.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <header th:include="fragments/header :: header"></header>
+
+    <section
+            class="relative bg-[url(img/section.png)] bg-cover bg-center bg-no-repeat"
+    >
+        <div
+                class="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
+        ></div>
+
+        <div
+                class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+        >
+            <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+                <h1 class="text-3xl font-extrabold sm:text-5xl">
+                    Permitenos ayudarte con tu
+
+                    <strong class="block font-extrabold text-blue-600"> Inventario. </strong>
+                </h1>
+
+                <div class="mt-8 flex flex-wrap gap-4 text-center">
+                    <a
+                            th:href="@{/usuarios}"
+                            class="block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                    >
+                        Gestionar Usuarios
+                    </a>
+
+                    <a
+                            th:href="@{/productos}"
+                            class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 focus:outline-none focus:ring active:text-blue-500 sm:w-auto"
+                    >
+                        Gestionar Productos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>
